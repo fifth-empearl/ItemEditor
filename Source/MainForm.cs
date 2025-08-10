@@ -187,6 +187,7 @@ namespace ItemEditor
                 this.newItemButton.Enabled = true;
                 this.duplicateItemButton.Enabled = true;
                 this.reloadItemButton.Enabled = true;
+                this.deleteItemButton.Enabled = true;
                 this.findItemButton.Enabled = true;
                 this.Loaded = true;
                 this.BuildItemsListBox();
@@ -312,6 +313,7 @@ namespace ItemEditor
             this.EditItem(item);
             this.editDuplicateItemMenuItem.Enabled = true;
             this.editReloadItemMenuItem.Enabled = true;
+            this.editDeleteItemMenuItem.Enabled = true;
             this.optionsGroupBox.Enabled = true;
             this.appearanceGroupBox.Enabled = true;
             this.serverItemListBox.SelectedIndex = index;
@@ -356,6 +358,30 @@ namespace ItemEditor
 
             Trace.WriteLine(string.Format("Duplicated item id {0} to new item id {1}", item.ID, copyItem.ID));
             return true;
+        }
+
+        public bool DeleteItem(ServerItem item)
+        {
+            if (!this.Loaded || item == null)
+            {
+                return false;
+            }
+
+            if (this.CurrentServerItem == item)
+            {
+                this.SelectItem(null);
+            }
+
+            bool removed = this.ServerItems.Remove(item);
+            this.serverItemListBox.Items.Remove(item);
+            this.itemsCountLabel.Text = this.serverItemListBox.Count + " Items";
+
+            if (removed)
+            {
+                Trace.WriteLine(string.Format("Deleted item id {0}", item.ID));
+            }
+
+            return removed;
         }
 
         public void CreateEmptyOTB(string filePath, SupportedClient client, bool isTemporary = true)
@@ -410,6 +436,7 @@ namespace ItemEditor
             this.editCreateItemMenuItem.Enabled = false;
             this.editDuplicateItemMenuItem.Enabled = false;
             this.editReloadItemMenuItem.Enabled = false;
+            this.editDeleteItemMenuItem.Enabled = false;
             this.editFindItemMenuItem.Enabled = false;
             this.editCreateMissingItemsMenuItem.Enabled = false;
             this.viewShowOnlyMismatchedMenuItem.Enabled = false;
@@ -423,6 +450,7 @@ namespace ItemEditor
             this.newItemButton.Enabled = false;
             this.duplicateItemButton.Enabled = false;
             this.reloadItemButton.Enabled = false;
+            this.deleteItemButton.Enabled = false;
             this.findItemButton.Enabled = false;
             this.Loaded = false;
 
@@ -446,6 +474,7 @@ namespace ItemEditor
             this.toolTip.SetToolTip(this.newItemButton, "Create Item");
             this.toolTip.SetToolTip(this.duplicateItemButton, "Duplicate Item");
             this.toolTip.SetToolTip(this.reloadItemButton, "Reaload Item");
+            this.toolTip.SetToolTip(this.deleteItemButton, "Delete Item");
             this.toolTip.SetToolTip(this.findItemButton, "Find Item");
         }
 
@@ -675,6 +704,7 @@ namespace ItemEditor
         {
             this.CurrentServerItem = null;
             this.editDuplicateItemMenuItem.Enabled = false;
+            this.editDeleteItemMenuItem.Enabled = false;
             this.optionsGroupBox.Enabled = false;
             this.appearanceGroupBox.Enabled = false;
             this.pictureBox.ClientItem = null;
@@ -688,6 +718,7 @@ namespace ItemEditor
             this.stackOrderComboBox.Text = string.Empty;
             this.stackOrderComboBox.ForeColor = Colors.LightText;
             this.editDuplicateItemMenuItem.Enabled = false;
+            this.editDeleteItemMenuItem.Enabled = false;
             this.candidatesButton.Enabled = false;
 
             foreach (Control control in this.optionsGroupBox.Controls)
@@ -1365,6 +1396,11 @@ namespace ItemEditor
             this.ReloadSelectedItem();
         }
 
+        private void EditDeleteItemMenuItem_Click(object sender, EventArgs e)
+        {
+            this.DeleteItem(this.CurrentServerItem);
+        }
+
         private void EditCreateMissingItemsMenu_Click(object sender, EventArgs e)
         {
             ushort lastCid = 0;
@@ -1449,6 +1485,11 @@ namespace ItemEditor
         private void DuplicateItemButton_Click(object sender, EventArgs e)
         {
             this.DuplicateItem(this.CurrentServerItem);
+        }
+
+        private void DeleteItemButton_Click(object sender, EventArgs e)
+        {
+            this.DeleteItem(this.CurrentServerItem);
         }
 
         private void ReloadItemButton_Click(object sender, EventArgs e)

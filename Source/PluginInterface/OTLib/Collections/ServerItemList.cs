@@ -79,6 +79,35 @@ namespace OTLib.Collections
             return item != null;
         }
 
+        public bool Remove(ServerItem item)
+        {
+            if (item == null)
+                return false;
+
+            bool removed = Items.Remove(item);
+
+            if (removed)
+            {
+                if (Items.Count > 0)
+                {
+                    MaxId = Items.Max(i => i.ID);
+                    MinId = Items.Min(i => i.ID);
+                }
+                else
+                {
+                    MaxId = MinId;
+                }
+            }
+
+            return removed;
+        }
+
+        public bool Remove(ushort sid)
+        {
+            ServerItem item = Items.FirstOrDefault(i => i.ID == sid);
+            return Remove(item);
+        }
+
         public void Clear()
         {
             Items.Clear();
