@@ -127,6 +127,7 @@
             this.reloadItemButton = new DarkUI.Controls.DarkButton();
             this.deleteItemButton = new DarkUI.Controls.DarkButton();
             this.findItemButton = new DarkUI.Controls.DarkButton();
+            this.deleteZeroItemButton = new DarkUI.Controls.DarkButton();
             this.label1 = new DarkUI.Controls.DarkLabel();
             this.forceUseCheckBox = new DarkUI.Controls.DarkCheckBox();
             this.previousPictureBox = new ItemEditor.Controls.ClientItemView();
@@ -1092,16 +1093,26 @@
             this.findItemButton.TabIndex = 40;
             this.findItemButton.Click += new System.EventHandler(this.FindItemButton_Click);
             //
+            // deleteZeroItemButton
+            //
+            this.deleteZeroItemButton.Enabled = false;
+            this.deleteZeroItemButton.Image = global::ItemEditor.Properties.Resources.DeleteIcon;
+            this.deleteZeroItemButton.Location = new System.Drawing.Point(175, 506);
+            this.deleteZeroItemButton.Name = "deleteZeroItemButton";
+            this.deleteZeroItemButton.Size = new System.Drawing.Size(25, 25);
+            this.deleteZeroItemButton.TabIndex = 41;
+            this.deleteZeroItemButton.Click += new System.EventHandler(this.DeleteZeroItemButton_Click);
+            //
             // label1
             //
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Location = new System.Drawing.Point(134, 509);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(2, 20);
-            this.label1.TabIndex = 41;
-            // 
+            this.label1.TabIndex = 42;
+            //
             // forceUseCheckBox
-            // 
+            //
             this.forceUseCheckBox.AutoSize = true;
             this.forceUseCheckBox.Location = new System.Drawing.Point(14, 162);
             this.forceUseCheckBox.Name = "forceUseCheckBox";
@@ -1222,6 +1233,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.deleteZeroItemButton);
             this.Controls.Add(this.findItemButton);
             this.Controls.Add(this.deleteItemButton);
             this.Controls.Add(this.reloadItemButton);
@@ -1368,6 +1380,7 @@
         private DarkUI.Controls.DarkButton reloadItemButton;
         private DarkUI.Controls.DarkButton deleteItemButton;
         private DarkUI.Controls.DarkButton findItemButton;
+        private DarkUI.Controls.DarkButton deleteZeroItemButton;
         private DarkUI.Controls.DarkLabel label1;
         private DarkUI.Controls.DarkComboBox stackOrderComboBox;
         private DarkUI.Controls.DarkLabel stackOrderLabel;

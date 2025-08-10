@@ -189,6 +189,7 @@ namespace ItemEditor
                 this.reloadItemButton.Enabled = true;
                 this.deleteItemButton.Enabled = true;
                 this.findItemButton.Enabled = true;
+                this.deleteZeroItemButton.Enabled = true;
                 this.Loaded = true;
                 this.BuildItemsListBox();
             }
@@ -452,6 +453,7 @@ namespace ItemEditor
             this.reloadItemButton.Enabled = false;
             this.deleteItemButton.Enabled = false;
             this.findItemButton.Enabled = false;
+            this.deleteZeroItemButton.Enabled = false;
             this.Loaded = false;
 
             if (clearLog)
@@ -476,6 +478,7 @@ namespace ItemEditor
             this.toolTip.SetToolTip(this.reloadItemButton, "Reaload Item");
             this.toolTip.SetToolTip(this.deleteItemButton, "Delete Item");
             this.toolTip.SetToolTip(this.findItemButton, "Find Item");
+            this.toolTip.SetToolTip(this.deleteZeroItemButton, "Delete Items with ID 0");
         }
 
         private void BuildItemsListBox()
@@ -1490,6 +1493,28 @@ namespace ItemEditor
         private void DeleteItemButton_Click(object sender, EventArgs e)
         {
             this.DeleteItem(this.CurrentServerItem);
+        }
+
+        private void DeleteZeroItemButton_Click(object sender, EventArgs e)
+        {
+            if (!this.Loaded)
+            {
+                return;
+            }
+
+            List<ServerItem> toDelete = new List<ServerItem>();
+            foreach (ServerItem item in this.ServerItems.Items)
+            {
+                if (item.ID == 0 || item.ClientId == 0)
+                {
+                    toDelete.Add(item);
+                }
+            }
+
+            foreach (ServerItem item in toDelete)
+            {
+                this.DeleteItem(item);
+            }
         }
 
         private void ReloadItemButton_Click(object sender, EventArgs e)
