@@ -51,6 +51,8 @@ namespace OTLib.Collections
 
             if (MaxId < item.ID)
                 MaxId = item.ID;
+            if (MinId > item.ID)
+                MinId = item.ID;
         }
 
         public IEnumerator<ServerItem> GetEnumerator()
@@ -95,7 +97,8 @@ namespace OTLib.Collections
                 }
                 else
                 {
-                    MaxId = MinId;
+                    MaxId = 100;
+                    MinId = 100;
                 }
             }
 
@@ -112,6 +115,7 @@ namespace OTLib.Collections
         {
             Items.Clear();
             MaxId = 100;
+            MinId = 100;
         }
     }
 }

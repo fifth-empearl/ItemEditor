@@ -368,17 +368,17 @@ namespace ItemEditor
                 return false;
             }
 
-            if (this.CurrentServerItem == item)
-            {
-                this.SelectItem(null);
-            }
-
             bool removed = this.ServerItems.Remove(item);
-            this.serverItemListBox.Items.Remove(item);
-            this.itemsCountLabel.Text = this.serverItemListBox.Count + " Items";
 
             if (removed)
             {
+                this.serverItemListBox.Items.Remove(item);
+                this.serverItemListBox.SelectedIndex = -1;
+                this.itemsCountLabel.Text = this.serverItemListBox.Count + " Items";
+                this.CurrentServerItem = null;
+                this.ResetControls();
+                this.Saved = false;
+                this.serverItemListBox.Invalidate();
                 Trace.WriteLine(string.Format("Deleted item id {0}", item.ID));
             }
 
