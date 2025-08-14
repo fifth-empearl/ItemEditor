@@ -51,8 +51,6 @@ namespace OTLib.Collections
 
             if (MaxId < item.ID)
                 MaxId = item.ID;
-            if (MinId > item.ID)
-                MinId = item.ID;
         }
 
         public IEnumerator<ServerItem> GetEnumerator()
@@ -81,41 +79,10 @@ namespace OTLib.Collections
             return item != null;
         }
 
-        public bool Remove(ServerItem item)
-        {
-            if (item == null)
-                return false;
-
-            bool removed = Items.Remove(item);
-
-            if (removed)
-            {
-                if (Items.Count > 0)
-                {
-                    MaxId = Items.Max(i => i.ID);
-                    MinId = Items.Min(i => i.ID);
-                }
-                else
-                {
-                    MaxId = 100;
-                    MinId = 100;
-                }
-            }
-
-            return removed;
-        }
-
-        public bool Remove(ushort sid)
-        {
-            ServerItem item = Items.FirstOrDefault(i => i.ID == sid);
-            return Remove(item);
-        }
-
         public void Clear()
         {
             Items.Clear();
             MaxId = 100;
-            MinId = 100;
         }
     }
 }

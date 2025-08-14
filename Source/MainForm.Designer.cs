@@ -91,7 +91,6 @@
             this.editCreateItemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editDuplicateItemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editReloadItemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editDeleteItemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.editFindItemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separatorMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
@@ -125,9 +124,7 @@
             this.newItemButton = new DarkUI.Controls.DarkButton();
             this.duplicateItemButton = new DarkUI.Controls.DarkButton();
             this.reloadItemButton = new DarkUI.Controls.DarkButton();
-            this.deleteItemButton = new DarkUI.Controls.DarkButton();
             this.findItemButton = new DarkUI.Controls.DarkButton();
-            this.deleteZeroItemButton = new DarkUI.Controls.DarkButton();
             this.label1 = new DarkUI.Controls.DarkLabel();
             this.forceUseCheckBox = new DarkUI.Controls.DarkCheckBox();
             this.previousPictureBox = new ItemEditor.Controls.ClientItemView();
@@ -713,7 +710,6 @@
             this.editCreateItemMenuItem,
             this.editDuplicateItemMenuItem,
             this.editReloadItemMenuItem,
-            this.editDeleteItemMenuItem,
             this.separatorMenuItem4,
             this.editCreateMissingItemsMenuItem,
             this.toolStripSeparator2,
@@ -751,17 +747,6 @@
             this.editReloadItemMenuItem.Size = new System.Drawing.Size(193, 22);
             this.editReloadItemMenuItem.Text = "&Reload Item";
             this.editReloadItemMenuItem.Click += new System.EventHandler(this.EditReloadItemMenuItem_Click);
-
-            //
-            // editDeleteItemMenuItem
-            //
-            this.editDeleteItemMenuItem.Enabled = false;
-            this.editDeleteItemMenuItem.Image = global::ItemEditor.Properties.Resources.DeleteIcon;
-            this.editDeleteItemMenuItem.Name = "editDeleteItemMenuItem";
-            this.editDeleteItemMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.editDeleteItemMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.editDeleteItemMenuItem.Text = "&Delete Item";
-            this.editDeleteItemMenuItem.Click += new System.EventHandler(this.EditDeleteItemMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -1072,47 +1057,27 @@
             this.reloadItemButton.Size = new System.Drawing.Size(25, 25);
             this.reloadItemButton.TabIndex = 38;
             this.reloadItemButton.Click += new System.EventHandler(this.ReloadItemButton_Click);
-            //
-            // deleteItemButton
-            //
-            this.deleteItemButton.Enabled = false;
-            this.deleteItemButton.Image = global::ItemEditor.Properties.Resources.DeleteIcon;
-            this.deleteItemButton.Location = new System.Drawing.Point(102, 506);
-            this.deleteItemButton.Name = "deleteItemButton";
-            this.deleteItemButton.Size = new System.Drawing.Size(25, 25);
-            this.deleteItemButton.TabIndex = 39;
-            this.deleteItemButton.Click += new System.EventHandler(this.DeleteItemButton_Click);
-            //
+            // 
             // findItemButton
-            //
+            // 
             this.findItemButton.Enabled = false;
             this.findItemButton.Image = global::ItemEditor.Properties.Resources.FindIcon;
-            this.findItemButton.Location = new System.Drawing.Point(144, 506);
+            this.findItemButton.Location = new System.Drawing.Point(114, 506);
             this.findItemButton.Name = "findItemButton";
             this.findItemButton.Size = new System.Drawing.Size(25, 25);
             this.findItemButton.TabIndex = 40;
             this.findItemButton.Click += new System.EventHandler(this.FindItemButton_Click);
-            //
-            // deleteZeroItemButton
-            //
-            this.deleteZeroItemButton.Enabled = false;
-            this.deleteZeroItemButton.Image = global::ItemEditor.Properties.Resources.DeleteIcon;
-            this.deleteZeroItemButton.Location = new System.Drawing.Point(175, 506);
-            this.deleteZeroItemButton.Name = "deleteZeroItemButton";
-            this.deleteZeroItemButton.Size = new System.Drawing.Size(25, 25);
-            this.deleteZeroItemButton.TabIndex = 41;
-            this.deleteZeroItemButton.Click += new System.EventHandler(this.DeleteZeroItemButton_Click);
-            //
+            // 
             // label1
-            //
+            // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(134, 509);
+            this.label1.Location = new System.Drawing.Point(104, 509);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(2, 20);
-            this.label1.TabIndex = 42;
-            //
+            this.label1.TabIndex = 41;
+            // 
             // forceUseCheckBox
-            //
+            // 
             this.forceUseCheckBox.AutoSize = true;
             this.forceUseCheckBox.Location = new System.Drawing.Point(14, 162);
             this.forceUseCheckBox.Name = "forceUseCheckBox";
@@ -1233,9 +1198,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.deleteZeroItemButton);
             this.Controls.Add(this.findItemButton);
-            this.Controls.Add(this.deleteItemButton);
             this.Controls.Add(this.reloadItemButton);
             this.Controls.Add(this.duplicateItemButton);
             this.Controls.Add(this.newItemButton);
@@ -1335,7 +1298,6 @@
         private System.Windows.Forms.ToolStripMenuItem editMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editDuplicateItemMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editReloadItemMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editDeleteItemMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editCreateItemMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editFindItemMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editCreateMissingItemsMenuItem;
@@ -1378,9 +1340,7 @@
         private DarkUI.Controls.DarkButton newItemButton;
         private DarkUI.Controls.DarkButton duplicateItemButton;
         private DarkUI.Controls.DarkButton reloadItemButton;
-        private DarkUI.Controls.DarkButton deleteItemButton;
         private DarkUI.Controls.DarkButton findItemButton;
-        private DarkUI.Controls.DarkButton deleteZeroItemButton;
         private DarkUI.Controls.DarkLabel label1;
         private DarkUI.Controls.DarkComboBox stackOrderComboBox;
         private DarkUI.Controls.DarkLabel stackOrderLabel;
