@@ -187,14 +187,12 @@ namespace PluginTwo
             using (FileStream fileStream = new FileStream(filename, FileMode.Open))
             {
                 BinaryReader reader = new BinaryReader(fileStream);
+                const uint marker = 0x4F424A4D; // "OBJM"
                 uint datSignature = reader.ReadUInt32();
-<<<<<<< HEAD
                 if (datSignature == marker)
                 {
                     datSignature = reader.ReadUInt32();
                 }
-=======
->>>>>>> parent of 996747b (Correct item count when marker present)
                 if (client.DatSignature != datSignature)
                 {
                     string message = "PluginTwo: Bad dat signature. Expected signature is {0:X} and loaded signature is {1:X}.";
