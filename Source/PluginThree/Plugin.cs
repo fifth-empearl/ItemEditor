@@ -194,7 +194,12 @@ namespace PluginThree
             {
                 BinaryReader reader = new BinaryReader(fileStream);
 
+                const uint marker = 0x4F424A4D; // "OBJM"
                 uint datSignature = reader.ReadUInt32();
+                if (datSignature == marker)
+                {
+                    datSignature = reader.ReadUInt32();
+                }
                 if (client.DatSignature != datSignature)
                 {
                     string message = "PluginThree: Bad dat signature. Expected signature is {0:X} and loaded signature is {1:X}.";
