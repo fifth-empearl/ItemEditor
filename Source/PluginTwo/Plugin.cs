@@ -189,11 +189,13 @@ namespace PluginTwo
                 BinaryReader reader = new BinaryReader(fileStream);
                 const uint marker = 0x4F424A4D; // "OBJM"
                 uint datSignature = reader.ReadUInt32();
+
                 bool hasMarker = false;
                 if (datSignature == marker)
                 {
                     datSignature = reader.ReadUInt32();
                     hasMarker = true;
+
                 }
                 if (client.DatSignature != datSignature)
                 {
