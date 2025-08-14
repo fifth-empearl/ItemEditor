@@ -72,6 +72,8 @@ namespace PluginThree
         Wrappable = 0x24,
         Unwrappable = 0x25,
         TopEffect = 0x26,
+        Bones = 0x27,
+        BasicUnreadable = 0x28,
         Usable = 0xFE,
 
         LastFlag = 0xFF
@@ -386,6 +388,7 @@ namespace PluginThree
                             case ItemFlag.Wrappable:
                             case ItemFlag.Unwrappable:
                             case ItemFlag.TopEffect:
+                            case ItemFlag.BasicUnreadable:
                             case ItemFlag.Usable:
                                 break;
 
