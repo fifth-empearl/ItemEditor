@@ -79,6 +79,7 @@ namespace PluginThree
 
     public class Plugin : IPlugin
     {
+        private const uint Marker = 0x4F424A4D; // "OBJM"
         #region Private Properties
 
         private Dictionary<uint, Sprite> sprites;
@@ -195,6 +196,11 @@ namespace PluginThree
                 BinaryReader reader = new BinaryReader(fileStream);
 
                 uint datSignature = reader.ReadUInt32();
+                if (datSignature == Marker)
+                {
+                    datSignature = reader.ReadUInt32();
+                }
+
                 if (client.DatSignature != datSignature)
                 {
                     string message = "PluginThree: Bad dat signature. Expected signature is {0:X} and loaded signature is {1:X}.";
