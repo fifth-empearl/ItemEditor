@@ -254,14 +254,7 @@ namespace ItemEditor
             {
                 using (BinaryReader reader = new BinaryReader(fileStream))
                 {
-                    const uint marker = 0x4F424A4D; // "OBJM"
                     uint sprSignature = reader.ReadUInt32();
-                    bool hasMarker = false;
-                    if (sprSignature == marker)
-                    {
-                        sprSignature = reader.ReadUInt32();
-                        hasMarker = true;
-                    }
                     if (client.SprSignature != sprSignature)
                     {
                         string message = "Bad spr signature. Expected signature is {0:X} and loaded signature is {1:X}.";
@@ -290,10 +283,6 @@ namespace ItemEditor
                     foreach (uint element in spriteIndexes)
                     {
                         uint index = element + 3;
-                        if (hasMarker)
-                        {
-                            index += 4;
-                        }
                         reader.BaseStream.Seek(index, SeekOrigin.Begin);
                         ushort size = reader.ReadUInt16();
 

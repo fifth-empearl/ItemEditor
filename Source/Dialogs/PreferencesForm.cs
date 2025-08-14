@@ -107,12 +107,7 @@ namespace ItemEditor.Dialogs
                 fileStream = new FileStream(fileName, FileMode.Open);
                 using (BinaryReader reader = new BinaryReader(fileStream))
                 {
-                    const uint marker = 0x4F424A4D; // "OBJM"
                     signature = reader.ReadUInt32();
-                    if (signature == marker)
-                    {
-                        signature = reader.ReadUInt32();
-                    }
                 }
             }
             finally
