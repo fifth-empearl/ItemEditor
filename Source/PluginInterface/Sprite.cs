@@ -33,7 +33,6 @@ namespace ItemEditor
 {
     public class Sprite
     {
-        private const uint Marker = 0x4F424A4D; // "OBJM"
         #region Contructor
 
         public Sprite()
@@ -256,13 +255,6 @@ namespace ItemEditor
                 using (BinaryReader reader = new BinaryReader(fileStream))
                 {
                     uint sprSignature = reader.ReadUInt32();
-                    bool hasMarker = false;
-                    if (sprSignature == Marker)
-                    {
-                        hasMarker = true;
-                        sprSignature = reader.ReadUInt32();
-                    }
-
                     if (client.SprSignature != sprSignature)
                     {
                         string message = "Bad spr signature. Expected signature is {0:X} and loaded signature is {1:X}.";
@@ -288,11 +280,9 @@ namespace ItemEditor
                     }
 
                     uint id = 1;
-                    uint baseOffset = hasMarker ? 7u : 3u;
-
                     foreach (uint element in spriteIndexes)
                     {
-                        uint index = element + baseOffset;
+                        uint index = element + 3;
                         reader.BaseStream.Seek(index, SeekOrigin.Begin);
                         ushort size = reader.ReadUInt16();
 
