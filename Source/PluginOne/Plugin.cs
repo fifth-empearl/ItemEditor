@@ -187,9 +187,11 @@ namespace PluginOne
                 BinaryReader reader = new BinaryReader(fileStream);
                 const uint marker = 0x4F424A4D; // "OBJM"
                 uint datSignature = reader.ReadUInt32();
+                bool hasMarker = false;
                 if (datSignature == marker)
                 {
                     datSignature = reader.ReadUInt32();
+                    hasMarker = true;
                 }
                 if (client.DatSignature != datSignature)
                 {
@@ -200,6 +202,10 @@ namespace PluginOne
 
                 // get max id
                 this.itemCount = reader.ReadUInt16();
+                if (hasMarker)
+                {
+                    this.itemCount = (ushort)(this.itemCount - 2);
+                }
                 reader.ReadUInt16(); // skipping outfits count
                 reader.ReadUInt16(); // skipping effects count
                 reader.ReadUInt16(); // skipping missiles count
